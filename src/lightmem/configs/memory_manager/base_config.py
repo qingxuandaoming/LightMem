@@ -23,6 +23,10 @@ class BaseMemoryManagerConfig:
         ollama_base_url: Optional[str] = None,
         # DeepSeek specific
         deepseek_base_url: Optional[str] = None,
+        # Local HF LoRA specific
+        adapter_path: Optional[str] = None,
+        device_map: Optional[str] = "auto",
+        torch_dtype: Optional[str] = "auto",
     ):
 
         self.model = model
@@ -41,3 +45,8 @@ class BaseMemoryManagerConfig:
 
         # DeepSeek specific
         self.deepseek_base_url = deepseek_base_url
+        
+        # Local HF LoRA specific
+        self.adapter_path = adapter_path
+        self.device_map = device_map
+        self.torch_dtype = torch_dtype

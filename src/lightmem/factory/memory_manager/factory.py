@@ -6,6 +6,7 @@ class MemoryManagerFactory:
     _MODEL_MAPPING: Dict[str, str] = {
         "deepseek": "lightmem.factory.memory_manager.deepseek.DeepseekManager",
         "openai": "lightmem.factory.memory_manager.openai.OpenaiManager",
+        "local_hf_lora": "lightmem.factory.memory_manager.local_hf_lora.LocalHFLoraManager",
     }
 
     @classmethod

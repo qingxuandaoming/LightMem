@@ -7,7 +7,8 @@ class MemoryManagerConfig(BaseModel):
 
     _model_list: ClassVar[List[str]] = [
         "openai",
-        "deepseek"
+        "deepseek",
+        "local_hf_lora"
     ]
 
     configs: Optional[dict] = Field(description="Configuration for the specific MemoryManager model", default={})
