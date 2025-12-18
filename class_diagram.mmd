@@ -1,0 +1,63 @@
+classDiagram
+    class LightMemory {
+        +BaseMemoryConfigs config
+        +PreCompressor compressor
+        +TopicSegmenter segmenter
+        +MemoryManager manager
+        +TextEmbedder text_embedder
+        +ContextRetriever context_retriever
+        +EmbeddingRetriever embedding_retriever
+        +GraphMem graph
+        +add_memory()
+        +retrieve()
+    }
+
+    class MemoryManagerFactory {
+        +from_config()
+    }
+    class PreCompressorFactory {
+        +from_config()
+    }
+    class TopicSegmenterFactory {
+        +from_config()
+    }
+    class TextEmbedderFactory {
+        +from_config()
+    }
+    class RetrieverFactory {
+        +from_config()
+    }
+
+    LightMemory ..> MemoryManagerFactory : Use
+    LightMemory ..> PreCompressorFactory : Use
+    LightMemory ..> TopicSegmenterFactory : Use
+    LightMemory ..> TextEmbedderFactory : Use
+    LightMemory ..> RetrieverFactory : Use
+
+    namespace Implementations {
+        class MemoryManager {
+            OpenAI
+            DeepSeek
+            LocalHFLoRA
+        }
+        class PreCompressor {
+            EntropyCompress
+            LLMLingua2
+        }
+        class TopicSegmenter {
+            LLMLingua2
+        }
+        class TextEmbedder {
+            HuggingFace
+        }
+        class Retriever {
+            BM25 (Context)
+            Qdrant (Embedding)
+        }
+    }
+
+    MemoryManagerFactory ..> MemoryManager : Creates
+    PreCompressorFactory ..> PreCompressor : Creates
+    TopicSegmenterFactory ..> TopicSegmenter : Creates
+    TextEmbedderFactory ..> TextEmbedder : Creates
+    RetrieverFactory ..> Retriever : Creates

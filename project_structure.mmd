@@ -1,0 +1,16 @@
+graph TD
+    subgraph LightMem["src/lightmem"]
+        Configs["configs<br/>(Configuration)"]
+        Factory["factory<br/>(Component Factory)"]
+        Memory["memory<br/>(Core Logic)"]
+        Toolkits["memory_toolkits<br/>(Utils & Baselines)"]
+    end
+
+    Memory -->|Depends| Configs
+    Memory -->|Calls| Factory
+    Factory -->|Instantiates| Components[Concrete Implementations<br/>(Manager, Retriever, Embedder...)]
+    
+    Configs -->|Defines| BaseConfigs[BaseMemoryConfigs]
+    
+    Toolkits -->|Extends| InferenceUtils[Inference Utils]
+    Toolkits -->|Extends| Memories[Memories<br/>(Baselines: Mem0, LangMem)]
